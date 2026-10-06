@@ -2,8 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\PostController;
 
 Route::get('/', [WelcomeController::class, 'index'])->name('home');
+Route::get('posts', [PostController::class, 'index'])->name('posts.index');
+
 Route::get('/dashboard', function () {
     return view('userzone.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
