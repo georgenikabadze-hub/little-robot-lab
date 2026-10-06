@@ -1,8 +1,4 @@
-<nav>
-    <a href="{{ route('home') }}">Home</a> |
-    <a href="{{ route('posts.index') }}">Projects</a>
-</nav>
-
+<x-site-layout>
 <h1>Robot projects</h1>
 <p>All public projects from our parents.</p>
 
@@ -14,3 +10,4 @@
     </li>
 @endforeach
 </ul>
+</x-site-layout>
