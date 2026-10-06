@@ -18,6 +18,7 @@ class SiteLayout extends Component
         [                              
             ['label' => 'Home', 'link' => route('home')],
             ['label' => 'Projects', 'link' => route('posts.index')],
+            ['label' => 'Categories', 'link' => route('categories.index')],
         ];                
     }
 

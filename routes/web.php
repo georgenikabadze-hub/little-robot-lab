@@ -3,10 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CategoryController;
 
 Route::get('/', [WelcomeController::class, 'index'])->name('home');
 Route::get('posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
+Route::get('categories', [CategoryController::class, 'index'])->name('categories.index');
 
 Route::get('/dashboard', function () {
     return view('userzone.dashboard');
