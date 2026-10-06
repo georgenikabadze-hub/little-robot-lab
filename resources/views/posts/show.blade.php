@@ -1,3 +1,7 @@
+<nav>
+    <a href="{{ route('home') }}">Home</a> |
+    <a href="{{ route('posts.index') }}">Projects</a>
+</nav>
 <h1>{{ $post->title }}</h1>
 <p>by {{ $post->author->name }} in {{ $post->category->name }}</p>
 
