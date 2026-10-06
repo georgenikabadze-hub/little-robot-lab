@@ -6,6 +6,7 @@ use App\Http\Controllers\PostController;
 
 Route::get('/', [WelcomeController::class, 'index'])->name('home');
 Route::get('posts', [PostController::class, 'index'])->name('posts.index');
+Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
 
 Route::get('/dashboard', function () {
     return view('userzone.dashboard');
