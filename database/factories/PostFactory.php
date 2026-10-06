@@ -20,8 +20,8 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => fake()->sentence(4),
-            'content' => fake()->paragraphs(3, true),
+            'title' => fake()->realText(40),
+            'content' => fake()->realText(800),
             'is_public' => fake()->boolean(70),
             'user_id' => User::factory(),
             'category_id' => Category::factory(),
