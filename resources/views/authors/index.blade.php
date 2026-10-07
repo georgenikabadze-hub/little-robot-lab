@@ -4,7 +4,7 @@
 
 <ul>
 @foreach($authors as $author)
-    <li>{{ $author->name }}</li>
+    <li><a href="{{ route('authors.show', $author) }}">{{ $author->name }}</a></li>
 @endforeach
 </ul>
 </x-site-layout>

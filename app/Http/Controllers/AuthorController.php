@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 
 class AuthorController extends Controller
 {
-    public function show(User $user)
+    public function show(User $author)
     {
-        $posts = $user->posts()->where('is_public', true)->latest()->get();
-        return view('authors.show', compact('user', 'posts'));
+        $posts = $author->posts()->where('is_public', true)->latest()->get();
+        return view('authors.show', compact('author', 'posts'));
     }
 
     public function index()
