@@ -4,11 +4,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\AuthorController;
 
 Route::get('/', [WelcomeController::class, 'index'])->name('home');
 Route::get('posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
 Route::get('categories', [CategoryController::class, 'index'])->name('categories.index');
+Route::get('authors', [AuthorController::class, 'index'])->name('authors.index');
 
 Route::get('categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
 
