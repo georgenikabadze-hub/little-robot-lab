@@ -10,6 +10,8 @@ Route::get('posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
 Route::get('categories', [CategoryController::class, 'index'])->name('categories.index');
 
+Route::get('categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
+
 Route::get('/dashboard', function () {
     return view('userzone.dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

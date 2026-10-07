@@ -14,4 +14,12 @@ class CategoryController extends Controller
         return view('categories.index', compact('categories'));
 
     }   
+
+    public function show(Category $category)
+    {
+
+        $posts = $category->posts()->where('is_public', true)->latest()->get();
+        return view('categories.show', compact('category', 'posts'));
+
+    }
 }
