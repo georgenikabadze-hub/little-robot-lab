@@ -15,11 +15,11 @@ class SiteLayout extends Component
     public function __construct()
     {
         $this->menu = 
-        [ 
-            ['label' => 'Authors', 'link' => route('authors.index')],                             
+        [                             
             ['label' => 'Home', 'link' => route('home')],
             ['label' => 'Projects', 'link' => route('posts.index')],
             ['label' => 'Categories', 'link' => route('categories.index')],
+            ['label' => 'Authors', 'link' => route('authors.index')], 
         ];                
     }
 

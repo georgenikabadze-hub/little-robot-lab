@@ -11,7 +11,7 @@ Route::get('posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('posts/{post}', [PostController::class, 'show'])->name('posts.show');
 Route::get('categories', [CategoryController::class, 'index'])->name('categories.index');
 Route::get('authors', [AuthorController::class, 'index'])->name('authors.index');
-
+Route::get('authors/{author}', [AuthorController::class, 'show'])->name('authors.show');
 Route::get('categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
 
 Route::get('/dashboard', function () {
