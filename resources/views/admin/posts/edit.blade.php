@@ -8,11 +8,13 @@
     <div>
         <label for="title">Title</label><br>
         <input type="text" name="title" id="title" value="{{ $post->title }}">
+        @error('title') <div style="color: red;">{{ $message }}</div> @enderror
     </div>
 
     <div>
         <label for="content">Content</label><br>
         <textarea name="content" id="content">{{ $post->content }}</textarea>
+        @error('content') <div style="color: red;">{{ $message }}</div> @enderror
     </div>
 
     <div>
@@ -22,6 +24,7 @@
                 <option value="{{ $category->id }}" @selected($category->id === $post->category_id)>{{ $category->name }}</option>
             @endforeach
         </select>
+        @error('category_id') <div style="color: red;">{{ $message }}</div> @enderror
     </div>
 
     <div>

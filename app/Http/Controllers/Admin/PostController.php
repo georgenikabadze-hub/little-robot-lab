@@ -24,6 +24,12 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => ['required', 'string', 'max:255'],
+            'content' => ['required', 'string'],
+            'category_id' => ['required', 'exists:categories,id'],
+        ]);
+
         Post::create([
             'title' => $request->title,
             'content' => $request->content,
@@ -45,8 +51,19 @@ class PostController extends Controller
     }
 
         public function update(Request $request, Post $post)
+        
     {
-        abort_unless($post->user_id === auth()->id(), 403);$post->update([
+        abort_unless($post->user_id === auth()->id(), 403);
+        
+        $request->validate([
+            'title' => ['required', 'string', 'max:255'],
+            'content' => ['required', 'string'],
+            'category_id' => ['required', 'exists:categories,id'],
+        ]);
+
+        
+
+        $post->update([
             'title' => $request->title,
             'content' => $request->content,
             'category_id' => $request->category_id,
