@@ -11,8 +11,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::latest()->get();
-
+        $posts = Post::where('user_id', auth()->id())->latest()->get();
         return view('admin.posts.index', compact('posts'));
     }
     
@@ -35,9 +34,11 @@ class PostController extends Controller
 
         return redirect()->route('admin.posts.index');
     }
-
+        
         public function edit(Post $post)
     {
+        abort_unless($post->user_id === auth()->id(), 403);
+        
         $categories = Category::orderBy('name')->get();
 
         return view('admin.posts.edit', compact('post', 'categories'));
@@ -45,7 +46,7 @@ class PostController extends Controller
 
         public function update(Request $request, Post $post)
     {
-        $post->update([
+        abort_unless($post->user_id === auth()->id(), 403);$post->update([
             'title' => $request->title,
             'content' => $request->content,
             'category_id' => $request->category_id,
@@ -57,6 +58,8 @@ class PostController extends Controller
 
     public function destroy(Post $post)
     {
+            abort_unless($post->user_id === auth()->id(), 403);
+
             $post->delete();
 
             return redirect()->route('admin.posts.index');
