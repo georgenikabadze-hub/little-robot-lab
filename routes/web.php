@@ -32,6 +32,10 @@ Route::middleware('auth')->group(function ()
     Route::get('admin/posts/{post}/edit', [App\Http\Controllers\Admin\PostController::class, 'edit'])->name('admin.posts.edit');
     Route::put('admin/posts/{post}', [App\Http\Controllers\Admin\PostController::class, 'update'])->name('admin.posts.update');
     Route::delete('admin/posts/{post}', [App\Http\Controllers\Admin\PostController::class, 'destroy'])->name('admin.posts.destroy');
-    });
+    Route::get('admin/tags', [App\Http\Controllers\Admin\TagController::class, 'index'])->name('admin.tags.index');
+    Route::get('admin/tags/create', [App\Http\Controllers\Admin\TagController::class, 'create'])->name('admin.tags.create');
+    Route::post('admin/tags', [App\Http\Controllers\Admin\TagController::class, 'store'])->name('admin.tags.store');
+    Route::delete('admin/tags/{tag}', [App\Http\Controllers\Admin\TagController::class, 'destroy'])->name('admin.tags.destroy');
+    });  
 
 require __DIR__.'/auth.php';
