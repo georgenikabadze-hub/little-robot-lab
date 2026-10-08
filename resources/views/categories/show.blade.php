@@ -1,6 +1,6 @@
 <x-site-layout>
-<h1>{{ $category->name }}</h1>
-<p>Robot projects in this category.</p>
+<h1 class="text-3xl font-bold mb-2">{{ $category->name }}</h1>
+<p class="text-slate-600 mb-6">Robot projects in this category.</p>
 
 <ul>
 @forelse($posts as $post)

@@ -1,5 +1,5 @@
 <x-site-layout>
-<h1>My posts</h1>
+<h1 class="text-3xl font-bold mb-6">My posts</h1>
 
 <a href="{{ route('admin.posts.create') }}">Create new post</a>
 

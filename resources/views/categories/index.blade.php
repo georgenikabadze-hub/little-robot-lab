@@ -1,7 +1,6 @@
 <x-site-layout>
-<h1>Categories</h1>
-<p>Browse robot projects by topic.</p>
-
+<h1 class="text-3xl font-bold mb-2">Categories</h1>
+<p class="text-slate-600 mb-6">Browse robot projects by topic.</p>
 <ul>
 @foreach($categories as $category)
     <li><a href="{{ route('categories.show', $category) }}">{{ $category->name }}</a></li>@endforeach

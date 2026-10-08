@@ -1,6 +1,6 @@
 <x-site-layout>
-<h1>{{ $post->title }}</h1>
-<p>by {{ $post->author->name }} in {{ $post->category->name }}</p>
+<h1 class="text-3xl font-bold mb-2">{{ $post->title }}</h1>
+<p class="text-slate-500 mb-6">by {{ $post->author->name }} in {{ $post->category->name }}</p>
 
 <div>{{ $post->content }}</div>
 

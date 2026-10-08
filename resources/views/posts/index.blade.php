@@ -1,6 +1,6 @@
 <x-site-layout>
-<h1>Robot projects</h1>
-<p>All public projects from our parents.</p>
+<h1 class="text-3xl font-bold mb-2">Robot projects</h1>
+<p class="text-slate-600 mb-6">All public projects from our parents.</p>
 
 <ul>
 @foreach($posts as $post)

@@ -1,7 +1,6 @@
 <x-site-layout>
-<h1>{{ $author->name }}</h1>
-<p>Robot projects shared by this parent.</p>
-
+<h1 class="text-3xl font-bold mb-2">{{ $author->name }}</h1>
+<p class="text-slate-600 mb-6">Robot projects shared by this parent.</p>
 <ul>
 @forelse($posts as $post)
     <li>
