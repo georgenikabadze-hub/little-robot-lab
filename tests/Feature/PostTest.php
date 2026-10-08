@@ -1,4 +1,5 @@
 <?php
+
 use App\Models\Post;
 
 test('the posts page shows public posts and hides drafts', function () {
@@ -10,4 +11,10 @@ test('the posts page shows public posts and hides drafts', function () {
     $response->assertStatus(200);
     $response->assertSee('Public robot arm');
     $response->assertDontSee('Secret draft robot');
+});
+
+test('a draft cannot be opened on its own page', function () {
+    $draft = Post::factory()->create(['is_public' => false]);
+
+    $this->get('/posts/'.$draft->id)->assertNotFound();
 });
