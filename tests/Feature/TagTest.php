@@ -5,17 +5,6 @@ use App\Models\Tag;
 use App\Models\Category;
 use App\Models\User;
 
-test('a post can have many tags and a tag many posts', function () {
-    $post = Post::factory()->create();
-    $tag = Tag::create(['name' => 'laravel']);
-
-    $post->tags()->attach($tag);
-
-    expect($post->tags)->toHaveCount(1);
-    expect($tag->posts->first()->id)->toBe($post->id);
-});
-
-
 test('tags are saved when a post is created and updated', function () {
     $user = User::factory()->create();
     $category = Category::factory()->create();
@@ -39,6 +28,22 @@ test('tags are saved when a post is created and updated', function () {
         'tags' => [$lego->id],
     ]);
 
-    expect($post->fresh()->tags)->toHaveCount(1);   
+    expect($post->fresh()->tags)->toHaveCount(1);
+});
 
-    });
+test('a public post page shows its tags', function () {
+    $post = Post::factory()->create(['is_public' => true]);
+    $post->tags()->attach(Tag::create(['name' => 'Lego']));
+
+    $this->get(route('posts.show', $post))->assertSee('Lego');
+});
+
+test('a post can have many tags and a tag many posts', function () {
+    $post = Post::factory()->create();
+    $tag = Tag::create(['name' => 'laravel']);
+
+    $post->tags()->attach($tag);
+
+    expect($post->tags)->toHaveCount(1);
+    expect($tag->posts->first()->id)->toBe($post->id);
+});

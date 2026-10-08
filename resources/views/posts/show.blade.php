@@ -4,5 +4,14 @@
 
 <div>{{ $post->content }}</div>
 
+@if($post->tags->isNotEmpty())
+    <p>
+        Tags:
+        @foreach($post->tags as $tag)
+            {{ $tag->name }}@if(!$loop->last), @endif
+        @endforeach
+    </p>
+@endif
+
 <a href="{{ route('posts.index') }}">Back to all posts</a>
 </x-site-layout>
