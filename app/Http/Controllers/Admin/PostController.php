@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\Tag;
 
 class PostController extends Controller
 {
@@ -18,8 +19,9 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::orderBy('name')->get();
+        $tags = Tag::orderBy('name')->get();
 
-        return view('admin.posts.create', compact('categories'));
+        return view('admin.posts.create', compact('categories', 'tags'  ));
     }
 
     public function store(Request $request)
@@ -28,15 +30,19 @@ class PostController extends Controller
             'title' => ['required', 'string', 'max:255'],
             'content' => ['required', 'string'],
             'category_id' => ['required', 'exists:categories,id'],
+            'tags' => ['array'],
+            'tags.*' => ['exists:tags,id'],
         ]);
 
-        Post::create([
+        $post=Post::create([
             'title' => $request->title,
             'content' => $request->content,
             'category_id' => $request->category_id,
             'is_public' => $request->boolean('is_public'),
             'user_id' => auth()->id(),
         ]);
+
+        $post->tags()->sync($request->input('tags', []));
 
         return redirect()->route('admin.posts.index');
     }
@@ -46,8 +52,9 @@ class PostController extends Controller
         abort_unless($post->user_id === auth()->id(), 403);
         
         $categories = Category::orderBy('name')->get();
+        $tags = Tag::orderBy('name')->get();
 
-        return view('admin.posts.edit', compact('post', 'categories'));
+        return view('admin.posts.edit', compact('post', 'categories', 'tags'    ));
     }
 
         public function update(Request $request, Post $post)
@@ -59,6 +66,8 @@ class PostController extends Controller
             'title' => ['required', 'string', 'max:255'],
             'content' => ['required', 'string'],
             'category_id' => ['required', 'exists:categories,id'],
+            'tags' => ['array'],
+            'tags.*' => ['exists:tags,id'],
         ]);
 
         
@@ -69,6 +78,8 @@ class PostController extends Controller
             'category_id' => $request->category_id,
             'is_public' => $request->boolean('is_public'),
         ]);
+
+        $post->tags()->sync($request->input('tags', []));    
 
         return redirect()->route('admin.posts.index');
     }

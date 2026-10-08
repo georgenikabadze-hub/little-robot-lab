@@ -27,6 +27,17 @@
     </div>
 
     <div>
+    <label>Tags</label><br>
+    @foreach($tags as $tag)
+        <label>
+            <input type="checkbox" name="tags[]" value="{{ $tag->id }}" @checked(in_array($tag->id, old('tags', [])))>
+            {{ $tag->name }}
+        </label>
+    @endforeach
+    @error('tags.*') <div style="color: red;">{{ $message }}</div> @enderror
+    </div>
+
+    <div>
         <label><input type="checkbox" name="is_public" value="1"> Publish now</label>
     </div>
 
