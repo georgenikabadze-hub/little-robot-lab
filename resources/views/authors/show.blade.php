@@ -4,7 +4,7 @@
 <ul>
 @forelse($posts as $post)
     <li>
-        <a href="{{ route('posts.show', $post) }}"><b>{{ $post->title }}</b></a>
+        <a class="underline hover:text-yellow-500" href="{{ route('posts.show', $post) }}"><b>{{ $post->title }}</b></a>
         in {{ $post->category->name }}
     </li>
 @empty
@@ -12,5 +12,5 @@
 @endforelse
 </ul>
 
-<a href="{{ route('authors.index') }}">Back to all authors</a>
+<a class="underline hover:text-yellow-500" href="{{ route('authors.index') }}">Back to all authors</a>
 </x-site-layout>

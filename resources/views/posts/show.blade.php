@@ -13,5 +13,5 @@
     </p>
 @endif
 
-<a href="{{ route('posts.index') }}">Back to all posts</a>
+<a class="underline hover:text-yellow-500" href="{{ route('posts.index') }}">Back to all posts</a>
 </x-site-layout>
