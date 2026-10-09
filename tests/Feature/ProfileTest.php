@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Post;
 use App\Models\User;
 
 test('profile page is displayed', function () {
@@ -82,4 +83,21 @@ test('correct password must be provided to delete account', function () {
         ->assertRedirect('/profile');
 
     expect($user->fresh())->not->toBeNull();
+});
+
+test('an account with posts stays signed in and cannot be deleted', function () {
+    $user = User::factory()->create();
+    $post = Post::factory()->create(['user_id' => $user->id]);
+
+    $response = $this->actingAs($user)->from('/profile')->delete('/profile', [
+        'password' => 'password',
+    ]);
+
+    $response->assertRedirect('/profile')->assertSessionHasErrorsIn('userDeletion', [
+        'password' => 'Delete your posts before deleting your account.',
+    ]);
+
+    $this->assertAuthenticatedAs($user);
+    $this->assertModelExists($user);
+    $this->assertModelExists($post);
 });

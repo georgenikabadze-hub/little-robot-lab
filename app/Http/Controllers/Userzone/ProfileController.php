@@ -49,6 +49,12 @@ class ProfileController extends Controller
 
         $user = $request->user();
 
+        if ($user->posts()->exists()) {
+            return back()->withErrors([
+                'password' => 'Delete your posts before deleting your account.',
+            ], 'userDeletion');
+        }
+
         Auth::logout();
 
         $user->delete();
