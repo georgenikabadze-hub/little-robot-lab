@@ -3,7 +3,7 @@
 <p class="text-slate-600 mb-6">The parents who share their robot projects.</p>
 <ul>
 @foreach($authors as $author)
-    <li><a class="underline hover:text-yellow-500" href="{{ route('authors.show', $author) }}">{{ $author->name }}</a></li>
+    <li><a class="underline hover:text-amber-700" href="{{ route('authors.show', $author) }}">{{ $author->name }}</a></li>
 @endforeach
 </ul>
 </x-site-layout>

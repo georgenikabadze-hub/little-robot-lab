@@ -10,6 +10,6 @@
         @error('name') <div style="color: red;">{{ $message }}</div> @enderror
     </div>
 
-    <button type="submit">Create tag</button>
+    <button type="submit" class="rounded bg-slate-900 px-4 py-2 text-white hover:bg-slate-700">Create tag</button>
 </form>
 </x-site-layout>

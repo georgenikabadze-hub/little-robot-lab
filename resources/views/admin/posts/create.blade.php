@@ -41,6 +41,6 @@
         <label><input type="checkbox" name="is_public" value="1"> Publish now</label>
     </div>
 
-    <button type="submit">Create post</button>
+    <button type="submit" class="rounded bg-slate-900 px-4 py-2 text-white hover:bg-slate-700">Create post</button>
 </form>
 </x-site-layout>

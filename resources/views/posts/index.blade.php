@@ -5,7 +5,7 @@
 <ul>
 @foreach($posts as $post)
     <li>
-        <a class="underline hover:text-yellow-500" href="{{ route('posts.show', $post) }}"><b>{{ $post->title }}</b></a>
+        <a class="underline hover:text-amber-700" href="{{ route('posts.show', $post) }}"><b>{{ $post->title }}</b></a>
         by {{ $post->author->name }}
     </li>
 @endforeach
