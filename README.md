@@ -5,51 +5,25 @@ A robotics blog for parents building projects with their kids. Authors can creat
 ## Database schema
 
 ```mermaid
-erDiagram
-    users {
-        bigint id PK
-        varchar name
-        varchar email UK
-        varchar password
-    }
+flowchart LR
+    User["User<br/>id (PK)<br/>name<br/>email (unique)<br/>password (hashed)"]
+    Category["Category<br/>id (PK)<br/>name"]
+    Post["Post<br/>id (PK)<br/>title<br/>content<br/>is_public<br/>user_id (FK)<br/>category_id (FK)"]
+    Tag["Tag<br/>id (PK)<br/>name"]
 
-    categories {
-        bigint id PK
-        varchar name
-    }
-
-    posts {
-        bigint id PK
-        bigint user_id FK
-        bigint category_id FK
-        varchar title
-        text content
-        boolean is_public
-    }
-
-    tags {
-        bigint id PK
-        varchar name
-    }
-
-    post_tag {
-        bigint id PK
-        bigint post_id FK
-        bigint tag_id FK
-    }
-
-    users ||--o{ posts : writes
-    categories ||--o{ posts : groups
-    posts ||--o{ post_tag : has
-    tags ||--o{ post_tag : has
+    User ---|"one to many"| Post
+    Category ---|"one to many"| Post
+    Post ---|"many to many via post_tag"| Tag
 ```
 
 ## Relationships
 
 - A user can write many posts. Each post belongs to one user.
 - A category can contain many posts. Each post belongs to one category.
-- Posts and tags have a many-to-many relationship through the post_tag table.
+- A post can have many tags, and a tag can belong to many posts.
 
-PK means primary key. FK means foreign key. UK means unique key.
+PK means primary key. FK means foreign key.
 
-The users, posts, categories and tags tables also have created_at and updated_at timestamps. The post_tag table has a unique post_id and tag_id pair, so the same tag cannot be added to a post twice.
+The post_tag linking table stores id, post_id and tag_id. Each row connects one post to one tag. A unique post_id and tag_id pair prevents adding the same tag to a post twice.
+
+The User, Post, Category and Tag tables also have created_at and updated_at timestamps.
